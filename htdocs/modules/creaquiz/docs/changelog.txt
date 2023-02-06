@@ -1,3 +1,7 @@
+2023-02-05 - v 2.94 - JJDai - jjdelalandre@orange.fr
+---------------------------------------------------
+- Ajout ndes block 'last' et 'random'
+
 2022-12-12 - v 2.94 - JJDai - jjdelalandre@orange.fr
 ---------------------------------------------------
 - Ajout des type de question avec images à cliquer

@@ -153,7 +153,9 @@ define('_MI_CREAQUIZ_MAXWIDTH_IMAGE_DESC', 'Définit la largeur maximale à laqu
 define('_MI_CREAQUIZ_MAXHEIGHT_IMAGE', 'Image de hauteur maximale');
 define('_MI_CREAQUIZ_MAXHEIGHT_IMAGE_DESC', 'Définit la hauteur maximale à laquelle les images téléchargées doivent être mises à l’échelle (en pixels) <br> 0 signifie que les images conservent la taille originale. <br> Si une image est plus petite que la valeur maximale, l’image ne sera pas agrandi, il sera sauvegardé à la hauteur d\'origine ');
 
-define('_MI_QUIZ_SHOW_TPL_NAME', 'Afficher le nom des templates');
-define('_MI_QUIZ_SHOW_TPL_NAME_DESC', 'Option à utiliser pour le développement, la désactiver en production');
+define('_MI_CREAQUIZ_SHOW_TPL_NAME', 'Afficher le nom des templates');
+define('_MI_CREAQUIZ_SHOW_TPL_NAME_DESC', 'Option à utiliser pour le développement, la désactiver en production');
+\define('_MI_CREAQUIZ_CATEGORIES_BLOCK', "Bloc catégories");
+\define('_MI_CREAQUIZ_CATEGORIES_BLOCK_DESC', "Description du bloc de catégories");
 
 ?>

@@ -221,6 +221,18 @@ class CategoriesHandler extends \XoopsPersistableObjectHandler
         $allEnrAllowed = parent::getAll($criteria);
         return $allEnrAllowed;
     }
+    
+	public function getAllowedArr($short_permtype = 'view', $criteria = null, $sorted='cat_weight,cat_name,cat_id', $order="ASC")
+    {
+        $categoriesAll = $this->getAllowed($short_permtype,$criteria,$sorted,$order);
+        $catArr = array();
+        foreach (\array_keys($categoriesAll) as $i) {
+            $catArr[$categoriesAll[$i]->getVar('cat_id')] = $categoriesAll[$i]->getValuesCategories();
+        }
+
+        return $catArr;
+        
+    }
 
     //////////////////////////////////
 

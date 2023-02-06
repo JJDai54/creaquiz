@@ -25,6 +25,7 @@ use XoopsModules\Creaquiz\Helper;
 use XoopsModules\Creaquiz\Constants;
 
 include_once XOOPS_ROOT_PATH . '/modules/creaquiz/include/common.php';
+include_once (XOOPS_ROOT_PATH . "/Frameworks/JJD-Framework/load.php");
 
 /**
  * Function show block
@@ -33,8 +34,7 @@ include_once XOOPS_ROOT_PATH . '/modules/creaquiz/include/common.php';
  */
 function b_creaquiz_quiz_show($options)
 {
-include_once (XOOPS_ROOT_PATH . "/Frameworks/JJD-Framework/load.php");
-include_once XOOPS_ROOT_PATH . '/modules/creaquiz/class/quiz.php';
+include_once XOOPS_ROOT_PATH . '/modules/creaquiz/class/Quiz.php';
 	$myts = MyTextSanitizer::getInstance();
 	$GLOBALS['xoopsTpl']->assign('creaquiz_upload_url', CREAQUIZ_UPLOAD_URL);
 	$block       = [];
@@ -97,7 +97,7 @@ include_once XOOPS_ROOT_PATH . '/modules/creaquiz/class/quiz.php';
 		break;
 	}
 
-\JJD\load_css('', false);
+
 
 	$crQuiz->setLimit( $limit );
 	$quizAll = $quizHandler->getAllowed('view', $crQuiz,'','');
@@ -105,6 +105,8 @@ include_once XOOPS_ROOT_PATH . '/modules/creaquiz/class/quiz.php';
     
     $block['options']['title'] = $caption;            
     $block['options']['desc'] = str_replace("\n", "<br>",$desc);            
+    $block['options']['theme'] = 'red';   
+             
 //echo "<hr>===>cat : <pre>". print_r($cat, true) ."</pre><hr>";
 	if (count($quizAll) > 0) {
 		foreach(array_keys($quizAll) as $i) {
@@ -123,7 +125,8 @@ include_once XOOPS_ROOT_PATH . '/modules/creaquiz/class/quiz.php';
 	}
 //echo "<hr>===>block : <pre>". print_r($block, true) ."</pre><hr>";
 
-	return $block;
+\JJD\load_css('', false);	
+    return $block;
 
 }
 
@@ -133,7 +136,7 @@ include_once XOOPS_ROOT_PATH . '/modules/creaquiz/class/quiz.php';
 function b_creaquiz_get_quiz()
 {
 	include_once XOOPS_ROOT_PATH . '/modules/creaquiz/class/quiz.php';
-	$creaquizHelper = Helper::getInstance();
+	$creaquizHelper = \XoopsModules\Creaquiz\Helper::getInstance();    
 	$quizHandler = $creaquizHelper->getHandler('Quiz');
     
 	$crQuiz = new \CriteriaCompo();
@@ -165,7 +168,6 @@ function b_creaquiz_get_categories()
  */
 function b_creaquiz_quiz_edit($options)
 {
-include_once (XOOPS_ROOT_PATH . "/Frameworks/JJD-Framework/load.php");
 //    echo "<hr><pre>zzz : " . print_r($options, true) . "</pre><hr>";
     
 	include_once XOOPS_ROOT_PATH . '/modules/creaquiz/class/quiz.php';
@@ -173,10 +175,12 @@ include_once (XOOPS_ROOT_PATH . "/Frameworks/JJD-Framework/load.php");
 	$quizHandler = $creaquizHelper->getHandler('Quiz');
 	$GLOBALS['xoopsTpl']->assign('creaquiz_upload_url', CREAQUIZ_UPLOAD_URL);
     
-    $form = new \XoopsThemeForm("creaquiz_block_last", 'form', $action, 'post', true);
+    $form = new \XoopsThemeForm("creaquiz_block", 'form', $action, 'post', true);
 	$form->setExtra('enctype="multipart/form-data"');
+
+
             
-    $filterTray = new \XoopsFormElementTray(_MB_CREAQUIZ_NB_QUIZ_2_list, '');    
+    $filterTray = new \XoopsFormElementTray(_CO_JJD_NB_QUIZ_2_list, '');    
     $index = 0;    //last, random, ... //mettre les formHidden en dernier
     $inpFilter = new \XoopsFormHidden("options[{$index}]", $options[$index]); 
     $filterTray->addElement($inpFilter);
@@ -188,30 +192,29 @@ include_once (XOOPS_ROOT_PATH . "/Frameworks/JJD-Framework/load.php");
     $form->addElement($filterTray);
     
     $index++;    
-    $inpLgItems = new \XoopsFormNumber(_MB_CREAQUIZ_NAME_QUIZ_LENGTH, "options[{$index}]", 5, 5, $options[$index]);
+    $inpLgItems = new \XoopsFormNumber(_CO_JJD_NAME_LENGTH, "options[{$index}]", 5, 5, $options[$index]);
     $inpLgItems->setMinMax(25, 120);
     $form->addElement($inpLgItems);
 
     $index++;   
     $tCat = explode(',', $options[$index]); 
 	$catAll = b_creaquiz_get_categories();
-    $inpCat = new \XoopsFormSelect(_MB_CREAQUIZ_CATEGORIES, "options[{$index}]", $tCat, $size = 5, true);
-    $inpCat->addOption(0, _MB_CREAQUIZ_ALL_QUIZ);
+    $inpCat = new \XoopsFormSelect(_CO_JJD_CATEGORIES, "options[{$index}]", $tCat, $size = 5, true);
+    $inpCat->addOption(0, _CO_JJD_ALL_CAT);
 	foreach(array_keys($catAll) as $i) {
         $inpCat->addOption($catAll[$i]->getVar('cat_id'), $catAll[$i]->getVar('cat_name'));
 	}
     $form->addElement($inpCat);
     
-    
     $index++;    
-    $inpCaption = new \XoopsFormText(_MB_CREAQUIZ_BLOCK_TITLE ,  "options[{$index}]", 120, 120, $options[$index]);
+    $inpCaption = new \XoopsFormText(_CO_JJD_BLOCK_TITLE ,  "options[{$index}]", 120, 120, $options[$index]);
     $form->addElement($inpCaption);
     
     $index++;    
  /*
     $inpDesc = new \XoopsFormText(_MB_CREAQUIZ_BLOCK_DESC ,  "options[{$index}]", 120, 255, $options[$index]);
  */
-    $inpDesc = new \XoopsFormTextArea(_MB_CREAQUIZ_BLOCK_DESC, "options[{$index}]", $options[$index], 5, $cols = 80); 
+    $inpDesc = new \XoopsFormTextArea(_CO_JJD_BLOCK_DESC, "options[{$index}]", $options[$index], 5, $cols = 80); 
     $form->addElement($inpDesc);
 /*
     $index++ ; //last, random, ... //mettre les formHidden en dernier

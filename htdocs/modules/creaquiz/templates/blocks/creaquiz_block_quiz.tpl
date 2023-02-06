@@ -20,11 +20,11 @@
 </style>
 
 	<{if count($block)}>
-        <div class="item-round-top default-item-head"><center><b>
+        <div class="item-round-top <{$block.options.theme}>-item-head"><center><b>
         <a href='modules/creaquiz/categories.php'><{$block.options.title}></a>
         </b></center></div>
         
-        <div class="item-round-none default-item-body"><center><{$block.options.desc}></center></div>
+        <div class="item-round-none <{$block.options.theme}>-item-body"><center><{$block.options.desc}></center></div>
   
 		<{foreach item=cat from=$block.data key=cat_Id}>    
           <div class="item-round-none <{$cat.cat.theme}>-item-head">
@@ -35,7 +35,7 @@
 
            <{* ========================================================== *}>  
           <div class="item-round-none <{$cat.cat.theme}>-item-body">
-          <table class='quizTbl' width='100%'>
+          <table class='quizTbl' width='100%' style='border:none;'>
     		<thead>
     			<tr class='head'>
     				<{* <th class="center">#</th> *}>
@@ -64,11 +64,6 @@
                       </a>
                   <{else}>
                   <{/if}>
-                  
-                  
-                                          
-                  
-                  
                   </td>
                 <{else}>
                     <{$smarty.const._MA_CREAQUIZ_CLOSED}>

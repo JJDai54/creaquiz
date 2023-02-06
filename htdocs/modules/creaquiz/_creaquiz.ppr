@@ -17,12 +17,12 @@ HTServer=localhost
 Extensions=*.*
 [Project tree]
 _creaquiz
-	+JJD
+	-JJD
 		..\..\..\..\..\JJD-Framework\projet\htdocs\Frameworks\JJD-Framework\class\xoopsform\formtabletray.php
 		..\..\..\..\..\JJD-Framework\projet\htdocs\Frameworks\JJD-Framework\css\style-item-design-old.css
 		..\..\..\..\..\JJD-Framework\projet\htdocs\Frameworks\JJD-Framework\css\style-item-color-old.css
 	+creaquiz
-		-admin
+		+admin
 			admin\about.php
 			admin\answers.php
 			admin\categories.php
@@ -589,7 +589,7 @@ _creaquiz
 				images\magenta\Thumbs.db
 				images\magenta\top.png
 				images\magenta\up.png
-		+include
+		-include
 			include\comment_functions.php
 			include\common.php
 			include\function.quizFlagAscii.php
@@ -806,30 +806,50 @@ _creaquiz
 5=language\french\blocks.php
 6=templates\blocks\creaquiz_block_quiz.tpl
 7=class\QuizHandler.php
+8=docs\changelog.txt
+9=class\CategoriesHandler.php
+10=blocks\categories.php
+11=templates\blocks\creaquiz_block_categories.tpl
+12=language\french\modinfo.php
 [Selected Project Files]
 Main=
-Selected=blocks\quiz.php
+Selected=blocks\categories.php
 [xoops_version.php]
-TopLine=153
-Caret=1,183
+TopLine=554
+Caret=35,576
 [sql\mysql.sql]
 TopLine=1
 Caret=1,14
 [blocks\quiz.php]
-TopLine=132
-Caret=3,169
+TopLine=124
+Caret=1,139
 [class\Quiz.php]
-TopLine=524
+TopLine=408
 Caret=1,408
 [admin\header.php]
-TopLine=45
-Caret=1,80
+TopLine=13
+Caret=64,23
 [language\french\blocks.php]
 TopLine=26
 Caret=33,47
 [templates\blocks\creaquiz_block_quiz.tpl]
-TopLine=19
-Caret=18,24
+TopLine=13
+Caret=59,27
 [class\QuizHandler.php]
-TopLine=367
-Caret=1,388
+TopLine=122
+Caret=24,145
+[docs\changelog.txt]
+TopLine=1
+Caret=1,4
+[class\CategoriesHandler.php]
+TopLine=205
+Caret=1,227
+[blocks\categories.php]
+TopLine=113
+Caret=1,137
+[templates\blocks\creaquiz_block_categories.tpl]
+TopLine=1
+Caret=13,27
+[language\french\modinfo.php]
+TopLine=125
+Caret=21,157

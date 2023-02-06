@@ -158,6 +158,16 @@ if ($currdirname == $moduleDirName) {
 		'url'  => 'results.php',
 	];
 }
+// Entries last
+$modversion['blocks'][] = [
+    'file'        => 'categories.php',
+    'name'        => '//' . \_MI_CREAQUIZ_CATEGORIES_BLOCK,
+    'description' => \_MI_CREAQUIZ_CATEGORIES_BLOCK_DESC,
+    'show_func'   => 'b_creaquiz_categories_show',
+    'edit_func'   => 'b_creaquiz_categories_edit',
+    'template'    => 'creaquiz_block_categories.tpl',
+    'options'     => '5|80|0|Title', //nbItem|ldTitle|cats(0=all)|title
+];
 // Quiz last
 $modversion['blocks'][] = [
 	'file'        => 'quiz.php',
@@ -178,6 +188,8 @@ $modversion['blocks'][] = [
 	'template'    => 'creaquiz_block_quiz.tpl',
 	'options'     => 'random|5|25|0',
 ];
+// Quiz random
+
 // ------------------- Blocks ------------------- //
 /*
 // Quiz new
@@ -560,8 +572,8 @@ $modversion['config'][] = [
 
 $modversion['config'][] = [
     'name' => 'displayTemplateName',
-    'title'       => '_MI_QUIZ_SHOW_TPL_NAME',
-    'description' => '_MI_QUIZ_SHOW_TPL_NAME_DESC',
+    'title'       => '_MI_CREAQUIZ_SHOW_TPL_NAME',
+    'description' => '_MI_CREAQUIZ_SHOW_TPL_NAME_DESC',
     'formtype'    => 'yesno',
     'valuetype'   => 'int',
     'default'     => 0];
